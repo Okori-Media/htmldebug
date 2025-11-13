@@ -3,25 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World Page</title>
-
-<script>
-!function(){var i="cioanalytics", analytics=(window[i]=window[i]||[]);if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute('data-global-customerio-analytics-key', i);t.src="https://cdp-eu.customer.io/v1/analytics-js/snippet/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._writeKey=key;analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.15.3";
-    analytics.load("58b9f12fab34cf45dbbc", {
-        "integrations": {
-            "Customer.io In-App Plugin": {
-                anonymousInApp: true
-            }
+    <title>Test Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-    });
-    analytics.page();
-}}();
-</script>
-
-    
+        
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            background: #667eea;
+        }
+        
+        .btn-secondary {
+            background: #f093fb;
+        }
+        
+        .btn-tertiary {
+            background: #4facfe;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This is a very basic HTML page.</p>
+    <div class="container">
+        <h1>Test Pages</h1>
+        <div class="button-group">
+            <a href="cio_test.html" class="btn btn-primary">CIO Test</a>
+            <a href="exit_intent_test.html" class="btn btn-secondary">Exit Intent Test</a>
+            <a href="cio_exit_test.html" class="btn btn-tertiary">CIO Exit Test</a>
+        </div>
+    </div>
 </body>
 </html>
