@@ -94,6 +94,51 @@
         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+        <h2>Understanding Exit Intent Detection</h2>
+        <p>Exit intent detection is a powerful tool that helps website owners engage with visitors who are about to leave. By detecting behavioral signals such as mouse movements, tab switching, and scrolling patterns, we can present timely offers, surveys, or helpful information.</p>
+        <p>This technology has been used successfully in e-commerce, lead generation, and content sites to reduce bounce rates and increase conversions. The key is to use it thoughtfully and not interrupt the user experience unnecessarily.</p>
+        
+        <h2>How It Works</h2>
+        <p>The exit intent library monitors several user behaviors simultaneously. When the mouse cursor moves toward the top of the browser window (typically to close the tab or navigate away), the system can trigger an action. Similarly, when users switch tabs or minimize the window, these actions can be detected.</p>
+        <p>Time-based triggers are also important. If a user has been on the page for a certain duration or has been idle without interaction, this can indicate they've finished reading or lost interest. The library can respond to these signals as well.</p>
+        <p>Scroll behavior is particularly interesting on mobile devices. When users scroll back to the top of a page quickly, it often indicates they're looking for the back button or preparing to leave. This gesture can be detected and used to trigger exit intent actions.</p>
+        
+        <h2>Best Practices</h2>
+        <p>When implementing exit intent popups, it's crucial to respect the user's experience. Don't show popups too early or too frequently. Make sure the offer or message is genuinely valuable to the user. Always provide an easy way to dismiss the popup.</p>
+        <p>Consider the context of your website and what would be most helpful to users at the moment they're considering leaving. Maybe it's a discount code, a content download, a newsletter signup, or simply asking for feedback about their experience.</p>
+        <p>Test different triggers and timing to find what works best for your audience. What works on desktop may need adjustment for mobile users. The thresholds for scroll detection, idle time, and time on page should be carefully tuned based on your content and user behavior.</p>
+        
+        <h2>Technical Implementation</h2>
+        <p>The exit-intent.js library is lightweight and has no dependencies. It uses native browser APIs to monitor user behavior and dispatches custom events when exit intent is detected. This makes it easy to integrate into any website or application.</p>
+        <p>The library supports multiple configuration options, allowing you to customize detection sensitivity, timing thresholds, and which triggers to enable. You can set different scroll thresholds for mobile and desktop devices, accounting for the different interaction patterns on each platform.</p>
+        <p>Debug mode is available to help you understand when and why exit intent is being triggered. This is invaluable during development and testing to ensure your configuration is working as expected.</p>
+        
+        <h2>Use Cases</h2>
+        <p>E-commerce sites often use exit intent to offer discounts to users who are about to abandon their shopping carts. This can recover potentially lost sales and improve conversion rates significantly.</p>
+        <p>Content publishers might use exit intent to promote newsletter signups or suggest related articles. By keeping users engaged longer, they increase pageviews and build a loyal audience.</p>
+        <p>SaaS companies can use exit intent to offer help or start a conversation with users who seem confused or ready to leave before completing a signup process. This human touch can make the difference between a lost lead and a new customer.</p>
+        <p>Survey and feedback forms presented via exit intent can gather valuable insights about why users are leaving and what could improve their experience. This data is crucial for continuous improvement.</p>
+        
+        <h2>Mobile Considerations</h2>
+        <p>Mobile users interact with websites differently than desktop users. Touch gestures, smaller screens, and different browsing contexts all affect how exit intent should be detected and presented.</p>
+        <p>The scroll-up trigger is particularly useful on mobile, as users often scroll to the top before tapping the back button. However, the threshold needs to be lower on mobile to account for shorter page lengths and more frequent scrolling.</p>
+        <p>Popups on mobile need to be carefully designed to not interfere with the user experience. They should be easy to dismiss and not cover critical content or navigation elements.</p>
+        
+        <h2>Privacy and User Experience</h2>
+        <p>While exit intent detection is a powerful tool, it should always be used with respect for user privacy and experience. The library only monitors interaction patterns and doesn't collect personal data unless you explicitly implement that functionality.</p>
+        <p>Consider providing users with clear value when showing exit intent popups. Annoying or intrusive popups can damage your brand and drive users away permanently. The goal is to be helpful, not pushy.</p>
+        <p>Some users may have accessibility needs or use assistive technologies. Ensure your exit intent popups are accessible and don't interfere with screen readers or keyboard navigation.</p>
+        
+        <h2>Testing Your Implementation</h2>
+        <p>This page is specifically designed to test exit intent detection. Scroll down to this section, then quickly scroll back up to trigger the scroll-based exit intent. The threshold is set to 400 pixels on desktop and 200 pixels on mobile.</p>
+        <p>You can also test other triggers by moving your mouse out of the browser window, switching to another tab, or simply waiting for the time-based triggers to activate. The debug console will show you exactly which trigger fired.</p>
+        <p>Remember that the popup will only show once per session by default. If you want to test multiple triggers, you'll need to refresh the page or clear the session flag in the code.</p>
+        
+        <h2>Conclusion</h2>
+        <p>Exit intent detection, when used thoughtfully, can significantly improve user engagement and conversion rates. By understanding user behavior and responding at the right moment with the right message, you can create a better experience for your visitors while achieving your business goals.</p>
+        <p>The exit-intent.js library provides a flexible, lightweight solution that's easy to implement and customize. Whether you're running an e-commerce site, a content platform, or a SaaS application, exit intent detection can be a valuable addition to your toolkit.</p>
+        <p>Experiment with different configurations, test thoroughly across devices, and always prioritize user experience. With the right approach, exit intent detection can be a win-win for both you and your users.</p>
     </div>
     
     <!-- Exit Intent Popup -->
