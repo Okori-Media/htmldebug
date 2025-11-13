@@ -3,10 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World Page</title>
+    <title>Exit Intent Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        #exit-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #exit-popup.show {
+            display: flex;
+        }
+        
+        .popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #666;
+        }
+        
+        .close-btn:hover {
+            color: #000;
+        }
+        
+        .popup-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .popup-content p {
+            color: #666;
+        }
+        
+        #exit-reason {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This is a very basic HTML page.</p>
+    <div class="content">
+        <h1>Exit Intent Test Page</h1>
+        <p>This page demonstrates exit intent detection. Try the following actions to trigger the exit intent popup:</p>
+        <ul>
+            <li><strong>Move mouse to leave the window</strong> - Move your cursor to the top of the browser (to close the tab)</li>
+            <li><strong>Switch tabs</strong> - Click on another browser tab</li>
+            <li><strong>Minimize window</strong> - Minimize or switch to another application</li>
+            <li><strong>Wait</strong> - Stay idle for a few seconds or wait on the page</li>
+            <li><strong>Scroll up quickly</strong> - Scroll down and then quickly scroll up</li>
+        </ul>
+        <p>The popup will show you which exit intent trigger was activated.</p>
+        
+        <h2>Sample Content</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    
+    <!-- Exit Intent Popup -->
+    <div id="exit-popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
+            <h2>Wait! Don't Leave Yet!</h2>
+            <p>We noticed you're about to leave. Is there something we can help you with?</p>
+            <div id="exit-reason">Exit intent detected</div>
+        </div>
+    </div>
+    
+    <!-- Exit Intent Library -->
+    <script src="exit-intent.js"></script>
+    
+    <!-- Exit Intent Implementation -->
+    <script>
+        // Track if popup has been shown to avoid showing it multiple times
+        let popupShown = false;
+        
+        // Initialize exit intent detection
+        const { destroy } = observeExitIntent({
+            eventName: 'my-exit-event',
+            timeOnPage: 10000,        // 10 seconds on page
+            idleTime: 5000,           // 5 seconds idle
+            mouseLeaveDelay: 500,     // 500ms delay after mouse leaves
+            tabChange: true,          // Detect tab changes
+            windowBlur: true,         // Detect window blur
+            scrollUpThreshold: {
+                mobile: 200,          // 200px scroll up on mobile
+                desktop: 400          // 400px scroll up on desktop
+            },
+            pageViewsToTrigger: 0,    // Disable page views trigger (set to 0)
+            debug: true               // Enable debug logging
+        });
+        
+        // Listen for exit intent event
+        window.addEventListener('my-exit-event', (e) => {
+            console.log('Exit intent detected:', e.detail);
+            
+            // Only show popup once
+            if (!popupShown) {
+                showPopup(e.detail);
+                popupShown = true;
+            }
+        });
+        
+        function showPopup(reason) {
+            const popup = document.getElementById('exit-popup');
+            const reasonElement = document.getElementById('exit-reason');
+            
+            // Update reason text
+            const reasonText = {
+                'timeOnPage': 'You\'ve been on the page for a while',
+                'idleTime': 'You seem to be idle',
+                'mouseLeave': 'Your mouse left the window',
+                'tabChange': 'You switched tabs',
+                'windowBlur': 'Window lost focus',
+                'scrollUp': 'You scrolled up quickly',
+                'pageViews': 'Multiple page views detected'
+            };
+            
+            reasonElement.textContent = `Exit intent detected: ${reasonText[reason] || reason}`;
+            popup.classList.add('show');
+        }
+        
+        function closePopup() {
+            const popup = document.getElementById('exit-popup');
+            popup.classList.remove('show');
+        }
+        
+        // Close popup when clicking outside of it
+        document.getElementById('exit-popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
 </body>
 </html>
