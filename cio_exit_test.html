@@ -193,6 +193,19 @@
         window.addEventListener('my-exit-event', (e) => {
             console.log('Exit intent detected:', e.detail);
             
+            // Fire Customer.io event for anonymous messaging
+            if (window.cioanalytics && typeof window.cioanalytics.track === 'function') {
+                window.cioanalytics.track('exit_intent_detected', {
+                    trigger: e.detail,
+                    timestamp: new Date().toISOString(),
+                    page_url: window.location.href,
+                    page_title: document.title
+                });
+                console.log('Customer.io event fired: exit_intent_detected with trigger:', e.detail);
+            } else {
+                console.warn('Customer.io analytics not available');
+            }
+            
             // Only show popup once
             if (!popupShown) {
                 showPopup(e.detail);
