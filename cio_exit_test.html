@@ -216,6 +216,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             } else {
                 console.warn('Customer.io analytics not available');
             }
+
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    'event': 'exit_intent_detected',
+                    'trigger': e.detail,
+                });
+            }
             
             // Only show popup once
             if (!popupShown) {
